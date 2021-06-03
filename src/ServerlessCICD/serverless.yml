@@ -1,0 +1,16 @@
+﻿service: serverless-cicd
+
+provider:
+  name: aws
+  lambdaHashingVersion: 20201221
+
+functions:
+  csharp-skill:
+    image:
+      uri: '${env:AWS_ACCOUNT}.dkr.ecr.us-east-1.amazonaws.com/serverless-container-cicd@${env:DIGEST}'
+      command:
+        - ServerlessCICD::ServerlessCICD.Functions::Get
+    events:
+      - http:
+          path: hello
+          method: get       
