@@ -15,17 +15,16 @@ steps:
       command: build
       repository: '$(repositoryName)'
   - task: AmazonWebServices.aws-vsts-tools.ECRPushImage.ECRPushImage@1
-      displayName: 'Push Image to ECR'
-      condition: and (succeeded(), ne(variables.isPullRequest, true))
-      inputs:
-        awsCredentials: 'AWS Account'
-        regionName: 'us-east-1'
-        sourceImageName: '$(repositoryName)'
-        sourceImageTag: '$(Build.BuildId)'
-        repositoryName: '$(repositoryName)'
-        pushTag: '$(Build.BuildId)'
-        autoCreateRepository: true
-        outputVariable: digest
+    displayName: 'Push Image to ECR'
+    condition: and (succeeded(), ne(variables.isPullRequest, true))
+    inputs:
+      awsCredentials: 'AWS Account'
+      regionName: 'us-east-1'
+      sourceImageName: '$(repositoryName)'
+      sourceImageTag: '$(Build.BuildId)'
+      repositoryName: '$(repositoryName)'
+      pushTag: '$(Build.BuildId)'
+      autoCreateRepository: true
   - task: CopyFiles@2
     displayName: 'Copy serverelss.yml File to build.artifactstagingdirectory'
     inputs:
