@@ -8,6 +8,7 @@ pool:
   vmImage: ubuntu-latest
 variables:
   repositoryName: 'serverless-container-cicd'
+  isPullRequest: $[startsWith(variables['Build.SourceBranch'], 'refs/pull/')]
 steps:
   - task: Docker@2
     displayName: 'Build Image'
