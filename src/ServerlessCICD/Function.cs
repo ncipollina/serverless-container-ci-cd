@@ -31,10 +31,12 @@ namespace ServerlessCICD
         {
             context.Logger.LogLine("Get Request\n");
 
+            var name = request.QueryStringParameters?["name"] ?? "AWS Serverless";
+
             var response = new APIGatewayProxyResponse
             {
                 StatusCode = (int)HttpStatusCode.OK,
-                Body = "Hello AWS Serverless",
+                Body = $"Hello {name}",
                 Headers = new Dictionary<string, string> { { "Content-Type", "text/plain" } }
             };
 
