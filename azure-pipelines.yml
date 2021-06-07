@@ -8,7 +8,7 @@ pool:
   vmImage: ubuntu-latest
 variables:
   repositoryName: 'serverless-container-cicd'
-  isPullRequest: $[startsWith(variables[Build.SourceBranch'], 'refs/pull/')]
+  isPullRequest: $[startsWith(variables['Build.SourceBranch'], 'refs/pull/')]
 steps:
   - task: Docker@2
     displayName: 'Build Image'
@@ -28,11 +28,12 @@ steps:
       autoCreateRepository: true
   - task: CopyFiles@2
     displayName: 'Copy serverelss.yml File to build.artifactstagingdirectory'
-      inputs:
-        SourceFolder: 'src/ServerlessCICD/'
-        Contents: serverless.yml
-        TargetFolder: '$(build.artifactstagingdirectory)/drop'
+    inputs:
+      SourceFolder: 'src/ServerlessCICD/'
+      Contents: serverless.yml
+      TargetFolder: '$(build.artifactstagingdirectory)/drop'
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(build.artifactstagingdirectory)/drop'
       artifactName: drop
+        
