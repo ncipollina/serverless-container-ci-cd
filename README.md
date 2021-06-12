@@ -10,5 +10,5 @@ This  project consists of:
 * azure-pipelines.yml - The Azure DevOps build pipeline definition file
 
 ## Video Links
-* [YouTube]()
-* [Odysee]()
+* [YouTube](https://youtu.be/0S3ijDFHuvU)
+* [Odysee](https://odysee.com/cicd-azure-devops-container-image:32a4b9dbbd6f60d195f195c8826c3091ce4105d5)
